@@ -3,3 +3,38 @@ title: "OW2 Season 4"
 ---
 
 The objective of this project is to identify the optimal team compositions for Overwatch 2 (OW2) Season 4 and compare these with the compositions used in professional play. Using metrics such as K/D/A ratio, pick rates, win rates, eliminations per 10 minutes, damage per 10 minutes, healing per 10 minutes, and deaths per 10 minutes, we will analyze the top 5 heroes in each role (Tank, Damage, and Support). From these rankings, we will determine the best team composition consisting of one Tank, two Damage, and two Support heroes. Finally, this optimal composition will be compared to the meta composition used by professional teams during the OWL Season 4 tournament to draw insights and conclusions.
+
+
+```{r}
+#| echo: false
+#| message: false
+library(tidyverse)
+library(ggrepel)
+library(Rtsne)
+```
+
+```{r}
+#| echo: false
+#| message: false
+data <- read_csv("data/ow_data.csv")
+
+# Filter and select relevant data
+filtered_data <- data %>%
+  filter(`Skill Tier` == "All") %>%
+  select(Hero, Role, `KDA Ratio`, `Pick Rate, %`, `Win Rate, %`, `Eliminations / 10min`, `Damage / 10min`, `Healing / 10min`, `Deaths / 10min`)
+
+# Get the top 5 heroes by KDA Ratio for each role
+top_heroes <- filtered_data %>%
+  group_by(Role) %>%
+  top_n(5, `Pick Rate, %`)
+
+# Create separate bar charts for each role
+ggplot(top_heroes, aes(x = reorder(Hero, -`Pick Rate, %`), y = `Pick Rate, %`, fill = Hero)) +
+  geom_bar(stat = "identity") +
+  facet_wrap(~ Role, scales = "free") +  # Create separate charts for each role
+  labs(title = "Top 5 Heroes by Pick Rate for Each Role",
+       x = "Hero",
+       y = "Pick Rate by Percentage") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 6))
+```
