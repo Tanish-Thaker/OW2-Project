@@ -2,13 +2,15 @@ project:
   type: website
 
 website:
-  title: "OW2 Stats"
+  title: "OW2 Season 4 Character Statistics"
   navbar:
     left:
       - href: index.qmd
-        text: Home
+        text: OW2 Season 4
+      - KDA_Ratio.qmd
+      - owl.qmd
+      - sources.qmd
       - about.qmd
-
 format:
   html:
     theme: cosmo
