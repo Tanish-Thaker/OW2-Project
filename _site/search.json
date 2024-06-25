@@ -4,7 +4,7 @@
     "href": "KDA_Ratio.html",
     "title": "Data",
     "section": "",
-    "text": "data &lt;- read_csv(\"data/ow_data.csv\")\n\nRows: 296 Columns: 133\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr   (3): Hero, Skill Tier, Role\ndbl (130): KDA Ratio, Pick Rate, %, Win Rate, %, Eliminations / 10min, Objec...\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nfiltered_data &lt;- data %&gt;%\n  filter(`Skill Tier` == \"All\") %&gt;%\n  select(Hero, Role, `KDA Ratio`, `Pick Rate, %`, `Win Rate, %`)\n\n# Create separate bar charts for each role\nggplot(filtered_data, aes(x = Hero, y = `KDA Ratio`, fill = Hero)) +\n  geom_bar(stat = \"identity\") +\n  facet_wrap(~ Role, scales = \"free\") +  # Create separate charts for each role\n  labs(title = \"Hero KDA Ratio Comparison by Role\",\n       x = \"Hero\",\n       y = \"KDA Ratio\") +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 6))\n\n\n\n\n\n\n\n\n\nhero_groups &lt;- data |&gt;\n  group_by(Hero, `Skill Tier`) |&gt;\n  summarise(\n    mean_KDA = mean(`KDA Ratio`),\n    mean_Pick_Rate = mean(`Pick Rate, %`),\n    mean_Win_Rate = mean(`Win Rate, %`),\n    mean_Eliminations = mean(`Eliminations / 10min`),\n    mean_Objective_Kills = mean(`Objective Kills / 10min`)\n  ) |&gt;\n  ungroup()\n\n`summarise()` has grouped output by 'Hero'. You can override using the\n`.groups` argument.\n\n# Define the colors for each skill tier\ntier_colors &lt;- c(\"All\" = \"#377EB8\", \"Bronze\" = \"#4DAF4A\", \"Silver\" = \"#984EA3\",\n                 \"Gold\" = \"#FF7F00\", \"Platinum\" = \"#FFFF33\", \"Diamond\" = \"#A65628\",\n                 \"Master\" = \"#F781BF\", \"Grandmaster\" = \"#999999\")\n# Create the grouped bar chart\nggplot(hero_groups, aes(x = Hero, fill = `Skill Tier`)) +\n  geom_bar(aes(y = mean_KDA), position = \"dodge\", stat = \"identity\") +\n  geom_bar(aes(y = mean_Pick_Rate / 10), position = \"dodge\", stat = \"identity\") +\n  geom_bar(aes(y = mean_Win_Rate / 10), position = \"dodge\", stat = \"identity\") +\n  geom_bar(aes(y = mean_Eliminations / 10), position = \"dodge\", stat = \"identity\") +\n  geom_bar(aes(y = mean_Objective_Kills / 10), position = \"dodge\", stat = \"identity\") +\n  scale_fill_manual(values = tier_colors) +\n  labs(title = \"Hero Performance by Skill Tier\",\n       y = \"Average Value\",\n       fill = \"Skill Tier\",\n       caption = \"Data Source: YourSource\") +\n  theme_minimal() +\n  theme(legend.position = \"top\",\n        plot.title = element_text(hjust = 0.5),\n        axis.text.x = element_text(angle = 45, hjust = 1))"
+    "text": "```"
   },
   {
     "objectID": "about.html",
@@ -25,6 +25,13 @@
     "href": "sources.html",
     "title": "Sources",
     "section": "",
-    "text": "The data used for this project came from Kaggle. The user that input this data is a data analyst that works for team 4 at Activision Blizzard (OW2 Team). They had submitted this data after the conclusion of season 4 making the data the most accurate data that can be found wiithout working direcctly for team 4."
+    "text": "The data used for this project came from Kaggle. The user that input this data is a data analyst that works for team 4 at Activision Blizzard (OW2 Team). They had submitted this data after the conclusion of season 4 making the data the most accurate data that can be found wiithout working direcctly for team 4.\nThe meta compositions featured from OWL in this project were collected from the OWL Midseason Madness Tournament which took place at the end of Season 4 of OW2."
+  },
+  {
+    "objectID": "owl.html",
+    "href": "owl.html",
+    "title": "OWL Comparison",
+    "section": "",
+    "text": "There were two main compositions used in the Overwatch League during season 4.\nThe first composition was a dive composition that included Winston as the Tank, Sombra and Tracer as the Damage, and the support line was a mix of either Brigitte and Ana or Kiriko and Ana.\nThe second team composition was a rush composition that included Rammatra as the Tank, a mix of Mei and Sombra or Mei and Sojourn as the Damage line, and a mix of Ana Brigitte or Ana Lucio for the Support Line."
   }
 ]

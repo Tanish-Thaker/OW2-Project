@@ -3,3 +3,5 @@ title: "Sources"
 ---
 
 The data used for this project came from Kaggle. The user that input this data is a data analyst that works for team 4 at Activision Blizzard (OW2 Team). They had submitted this data after the conclusion of season 4 making the data the most accurate data that can be found wiithout working direcctly for team 4.
+
+The meta compositions featured from OWL in this project were collected from the OWL Midseason Madness Tournament which took place at the end of Season 4 of OW2.
