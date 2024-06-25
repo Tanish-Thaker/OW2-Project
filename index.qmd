@@ -1,5 +1,5 @@
 ---
-title: "OW2 Season 4 Stats"
+title: "OW2 Season 4"
 ---
 
-
+The objective of this project is to identify the optimal team compositions for Overwatch 2 (OW2) Season 4 and compare these with the compositions used in professional play. Using metrics such as K/D/A ratio, pick rates, win rates, eliminations per 10 minutes, damage per 10 minutes, healing per 10 minutes, and deaths per 10 minutes, we will analyze the top 5 heroes in each role (Tank, Damage, and Support). From these rankings, we will determine the best team composition consisting of one Tank, two Damage, and two Support heroes. Finally, this optimal composition will be compared to the meta composition used by professional teams during the OWL Season 4 tournament to draw insights and conclusions.
