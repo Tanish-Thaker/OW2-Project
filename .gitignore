@@ -6,3 +6,5 @@
 *Rproj
 
 /.quarto/
+_publish.yml
+_quarto.yml
