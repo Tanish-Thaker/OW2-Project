@@ -7,8 +7,6 @@ website:
     left:
       - href: index.qmd
         text: OW2 Season 4
-      - KDA_Ratio.qmd
-      - owl.qmd
       - sources.qmd
       - about.qmd
 format:
